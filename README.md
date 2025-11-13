@@ -59,5 +59,38 @@ Base URL: [https://api.escuelajs.co/api/v1](https://api.escuelajs.co/api/v1)
 ### 🏠 Home Page
 
 
+---
+
+## 🧩 Example API Integration
+
+```typescript
+// product.service.ts
+@Injectable({ providedIn: 'root' })
+export class ProductService {
+  private baseUrl = 'https://api.escuelajs.co/api/v1/products';
+  constructor(private http: HttpClient) {}
+
+  getAllProducts(): Observable<any[]> {
+    return this.http.get<any[]>(this.baseUrl);
+  }
+
+  getProductById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/${id}`);
+  }
+
+  getProductsByCategory(id: number): Observable<any[]> {
+    return this.http.get<any[]>(`https://api.escuelajs.co/api/v1/categories/${id}/products`);
+  }
+}
+
+
+| Week       | Focus                             | Deliverable                    |
+| ---------- | --------------------------------- | ------------------------------ |
+| **Week 1** | Setup + Routing + Home            | Display product list + search  |
+| **Week 2** | Product detail + Category filters | Routing, API params            |
+| **Week 3** | Cart + Auth                       | LocalStorage, guards, services |
+| **Week 4** | Styling + Deploy                  | Responsive UI + Deployment     |
+
+
 ## 🧱 Folder Structure
 
