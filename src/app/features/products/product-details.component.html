@@ -1,0 +1,17 @@
+<div class="overlay">
+  <div class="card">
+    <button class="close" (click)="onClose()">×</button>
+    <div class="media">
+      <img [src]="product.image || 'https://i.imgur.com/QkIa5tT.jpeg'" alt="{{product.name}}" />
+    </div>
+    <div class="body">
+      <h2>{{product.name}}</h2>
+      <p class="price">${{product.price}}</p>
+      <p>{{product.description}}</p>
+      <div class="actions">
+        <button (click)="addToCart()">Add to cart</button>
+        <button class="buy" (click)="buyNow()">Buy now</button>
+      </div>
+    </div>
+  </div>
+</div>
