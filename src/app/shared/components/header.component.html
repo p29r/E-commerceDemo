@@ -1,0 +1,23 @@
+<header class="site-header">
+  <div class="brand">
+    <a class="logo" routerLink="/">E-commerceDemo</a>
+  </div>
+
+  <div class="search">
+    <span class="p-input-icon-left">
+      <i class="pi pi-search"></i>
+      <input pInputText type="text" placeholder="Search products..." />
+    </span>
+  </div>
+
+  <div class="actions">
+    <button pButton type="button" class="p-button-text cart-btn">
+      <i class="pi pi-shopping-cart"></i>
+      <p-badge [value]="cartCount" severity="info" class="cart-badge"></p-badge>
+    </button>
+
+    <button pButton type="button" class="p-button-text profile-btn">
+      <p-avatar label="{{userName.charAt(0)}}"></p-avatar>
+    </button>
+  </div>
+</header>
