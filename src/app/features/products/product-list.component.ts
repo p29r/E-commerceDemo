@@ -3,12 +3,16 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ProductService } from '../../core/services/product.service';
 import { ProductDetailsComponent } from './product-details.component';
+import { ProductPopupComponent } from './product-popup.component';
 import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [CommonModule, FormsModule, ProductDetailsComponent, ButtonModule],
+  imports: [CommonModule, FormsModule, 
+    //ProductDetailsComponent,
+     ButtonModule, DialogModule, ProductPopupComponent],
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
@@ -18,6 +22,7 @@ export class ProductListComponent implements OnInit {
   filtered: any[] = [];
 
   selectedProduct: any = null;
+  popupVisible = false;
 
   constructor(private productService: ProductService) {}
 
@@ -42,7 +47,17 @@ export class ProductListComponent implements OnInit {
   }
 
   openDetails(product: any) {
-    this.selectedProduct = product;
+    // fetch full product data by id and show popup
+    const id = product.id || product;
+    this.productService.getProductById(Number(id)).subscribe({
+      next: (p) => {
+        this.selectedProduct = p;
+        this.popupVisible = true;
+      },
+      error: (err) => {
+        console.error('Failed to load product details', err);
+      }
+    });
   }
 
   addToCart(product: any) {

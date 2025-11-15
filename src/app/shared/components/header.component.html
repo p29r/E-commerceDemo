@@ -4,7 +4,17 @@
   </div>
 
   <div class="search">
-    <span class="p-input-icon-left">
+    <div class="filters">
+      <select [(ngModel)]="selectedCategory" (change)="onCategoryChange()">
+        <option [ngValue]="null">Select category</option>
+        <option *ngFor="let c of categories" [ngValue]="c">{{c.name}}</option>
+      </select>
+      <select [(ngModel)]="selectedProduct" [disabled]="!productsByCategory || productsByCategory.length===0">
+        <option [ngValue]="null">Select product</option>
+        <option *ngFor="let p of productsByCategory" [ngValue]="p">{{p.name}}</option>
+      </select>
+    </div>
+    <span class="p-input-icon-left search-input">
       <i class="pi pi-search"></i>
       <input pInputText type="text" placeholder="Search products..." />
     </span>

@@ -1,0 +1,24 @@
+<p-dialog [(visible)]="visible" [modal]="true" [style]="{width: '640px'}" (onHide)="onHide()">
+  <ng-template pTemplate="header">
+    <div class="dlg-header">
+      <div class="title">{{product?.name || 'Product details'}}</div>
+      <button pButton type="button" icon="pi pi-times" class="p-button-rounded p-button-text dlg-close" (click)="onHide()"></button>
+    </div>
+  </ng-template>
+
+  <div class="popup-body" *ngIf="product">
+    <div class="media">
+      <img [src]="product.image || 'https://i.imgur.com/QkIa5tT.jpeg'" alt="{{product.name}}" />
+    </div>
+    <div class="info">
+      <h2>{{product.name}}</h2>
+      <p class="price">${{product.price}}</p>
+      <p>{{product.description}}</p>
+      <pre class="raw">{{product | json}}</pre>
+      <div class="actions">
+        <button pButton type="button" label="Add to cart" (click)="onAdd()"></button>
+        <button pButton type="button" label="Buy now" class="p-button-danger" (click)="onBuy()"></button>
+      </div>
+    </div>
+  </div>
+</p-dialog>

@@ -7,7 +7,7 @@
     <div class="card" *ngFor="let p of filtered">
       <img [src]="p.image || 'https://i.imgur.com/QkIa5tT.jpeg'" alt="{{p.name}}" />
       <div class="info">
-        <h3 (click)="openDetails(p)">{{p.name}}</h3>
+  <h3 (click)="openDetails(p)">{{p.name}}</h3>
         <p class="price">${{p.price}}</p>
         <div class="actions">
           <button (click)="addToCart(p)">Add to cart</button>
@@ -17,5 +17,7 @@
     </div>
   </div>
 
-  <app-product-details *ngIf="selectedProduct" [product]="selectedProduct" (close)="selectedProduct = null"></app-product-details>
+  <!-- <app-product-details *ngIf="selectedProduct" [product]="selectedProduct" (close)="selectedProduct = null"></app-product-details> -->
+
+  <app-product-popup [(visible)]="popupVisible" [product]="selectedProduct" (addToCart)="addToCart($event)" (buyNow)="buyNow($event)"></app-product-popup>
 </div>

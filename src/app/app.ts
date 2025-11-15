@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { HeaderComponent } from './shared/components/header.component';
+import { DropdownModule } from 'primeng/dropdown';
 
 @Component({
   selector: 'app-root',
